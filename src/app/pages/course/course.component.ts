@@ -32,7 +32,6 @@ export class CourseComponent {
     this.data = [];
   }
 
-
   getCourse() {
     if (this.courseForm.valid) {
       const { courseId, description } = this.courseForm.getRawValue();
