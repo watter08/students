@@ -14,18 +14,21 @@
                     <div class="card-body">
                         <form [formGroup]="courseForm" (ngSubmit)="getCourse()">
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Course ID</label>
-                              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="courseId" />
+                                <label for="exampleInputEmail1" class="form-label">Course ID</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" formControlName="courseId" />
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Description</label>
-                              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="description" />
+                                <label for="exampleInputPassword1" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    formControlName="description" />
                             </div>
                             <div class="text-end">
-                                <button type="button"  class="btn btn-warning me-4" (click)="cleanInputs()">Clear</button>
+                                <button type="button" class="btn btn-warning me-4"
+                                    (click)="cleanInputs()">Clear</button>
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
-                          </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -33,10 +36,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <app-course-form-modal 
-            #modal
-            [courseData]="selectedCourse" 
-            (onSubmit)="handleCourseSave($event)">
+            <app-course-form-modal #modal [courseData]="selectedCourse" (onSubmit)="handleCourseSave($event)">
             </app-course-form-modal>
         </div>
     </div>
@@ -48,11 +48,13 @@
                         <h3 class="card-header-title">Courses</h3>
                     </div>
                     <div class="card-body">
-                        <div class="text-start"><span>Rows: {{ data.length }}</span></div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-success" (click)="openModal()">
-                                <i class="bi bi-plus fs-3"></i>
-                            </button>
+                        <div class="course-data">
+                            <div class="text-start"><span>Rows: {{ data.length }}</span></div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-success" (click)="openModal()">
+                                    <i class="bi bi-plus fs-3"></i>
+                                </button>
+                            </div>
                         </div>
                         <app-datatable [headers]="headers" [data]="data" [actions]="actions"></app-datatable>
                     </div>

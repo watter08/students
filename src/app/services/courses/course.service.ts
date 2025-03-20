@@ -51,4 +51,9 @@ export class CourseService {
     return of(this.courses);
   }
 
+  deleteCoursseById(courseId: number): Observable<any[]> {
+    const newData = [...this.courses];
+    this.courses = newData.filter(course => course.ID !== courseId);
+    return of(this.courses);
+  }
 }

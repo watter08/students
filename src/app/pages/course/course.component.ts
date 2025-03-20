@@ -77,8 +77,10 @@ export class CourseComponent {
     this.openModal();
   }
   
-  deleteRow(usuario: any) {
-    console.log('Eliminando usuario:', usuario);
+  deleteRow(row: any) {
+    this.service.deleteCoursseById(Number(row.ID)).subscribe((response) => {
+        this.data = response;
+    });
   }
 
 }
