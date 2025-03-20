@@ -46,4 +46,17 @@ export class StudentService {
     return of(filtered);
   }
   
+  putUpdateStudent(newStudent: any): Observable<any[]> {
+    this.students = this.students.map((student) => 
+      student.StudentId === newStudent.StudentId ? { ...student, ...newStudent } : student
+    );
+    return of(this.students);
+  }
+
+  deleteStudentById(studentId: number): Observable<any[]> {
+    const newData = [...this.students];
+    this.students = newData.filter(student => student.StudentId !== studentId);
+    return of(this.students);
+  }
+  
 }

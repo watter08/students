@@ -1,22 +1,23 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatatableComponent } from '../../components/datatable/datatable.component';
 import { StudentService } from '../../services/students/student.service';
+import { StudentFormModalComponent } from '../../components/modals/student-form-modal/student-form-modal.component';
 
 @Component({
   selector: 'app-students',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, DatatableComponent],
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, DatatableComponent, StudentFormModalComponent],
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss'
 })
 export class StudentsComponent {
-
+  @ViewChild(StudentFormModalComponent) modalComponent!: StudentFormModalComponent;
   headers: string[] = ['StudentId', 'Name', 'Lastname',  'Age', 'Born', 'CourseId', 'Address'];
   data: any[] = [];
-  selectedCourse: { ID?: string, Description?: string } | null = null;
+  selectedStudent: any = null;
 
 
   actions = [
@@ -37,11 +38,12 @@ export class StudentsComponent {
   }
 
   openModal() {
-    // if (this.modalComponent) {
-    //   this.modalComponent.openModal();
-    // } else {
-    //   console.error('ModalComponent is not initialized');
-    // }
+    console.log('open modal')
+    if (this.modalComponent) {
+      this.modalComponent.openModal();
+    } else {
+      console.error('ModalComponent is not initialized');
+    }
   }
 
   cleanInputs() {
@@ -60,28 +62,28 @@ export class StudentsComponent {
     }
   }
 
-  handleCourseSave(course: { courseId?: string, description: string }) {
-    // if (course.courseId) {
-    //   this.service.putUpdateCourse(Number(course.courseId), course.description).subscribe((ressponse) => {
-    //     this.data = ressponse;
-    //   });
-    // } else {
-    //   this.service.postAddCourse(course.description).subscribe((response) => {
-    //     if(this.data.length > 0){
-    //       this.data = response;
-    //     }
-    //   });
-    // }
+  handleStudentSave(student: any) {
+    if (student?.StudentId) {
+      this.service.putUpdateStudent(student).subscribe((ressponse) => {
+        this.data = ressponse;
+      });
+    } else {
+      // this.service.postAddCourse(course.description).subscribe((response) => {
+      //   if(this.data.length > 0){
+      //     this.data = response;
+      //   }
+      // });
+    }
   }
 
   updateRow(row: any) {
-    this.selectedCourse = {...row};
+    this.selectedStudent = {...row};
     this.openModal();
   }
   
   deleteRow(row: any) {
-    // this.service.deleteCoursseById(Number(row.ID)).subscribe((response) => {
-    //     this.data = response;
-    // });
+    this.service.deleteStudentById(Number(row.StudentId)).subscribe((response) => {
+        this.data = response;
+    });
   }
 }
