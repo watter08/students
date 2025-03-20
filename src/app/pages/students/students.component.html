@@ -1,1 +1,75 @@
-<app-navbar></app-navbar>
+<div class="course-container">
+    <div class="row">
+        <div class="col-md-12">
+            <app-navbar></app-navbar>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <div class="col-md-12">
+            <div class="max-container">
+                <div class="card mx-3">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Search Filters</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="row" [formGroup]="studentForm" (ngSubmit)="getStudent()">
+                            <div class="col-md-6 mb-3">
+                              <label for="courseId">Course ID:</label>
+                              <input class="form-control" id="courseId" formControlName="courseId" type="text">
+                            </div>
+                          
+                            <div class="col-md-6 mb-3">
+                              <label for="name">First Name:</label>
+                              <input class="form-control" id="name" formControlName="name" type="text">
+                            </div>
+                          
+                            <div class="col-md-6 mb-3">
+                              <label for="lastname">Last Name:</label>
+                              <input class="form-control" id="lastname" formControlName="lastname" type="text">
+                            </div>
+                          
+                            <div class="col-md-6 mb-3">
+                              <label for="age">Age:</label>
+                              <input class="form-control" id="age" formControlName="age" type="number">
+                            </div>
+                          
+                            <div class="text-end">
+                                <button type="button" class="btn btn-warning me-4" (click)="cleanInputs()">Clear</button>
+                                <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Submit</button>
+                            </div>
+                          </form>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <app-course-form-modal #modal [courseData]="selectedCourse" (onSubmit)="handleCourseSave($event)">
+            </app-course-form-modal> -->
+        </div>
+    </div>
+    <div class="row pt-5">
+        <div class="col-md-12">
+            <div class="max-container">
+                <div class="card mx-3">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Courses</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="course-data">
+                            <div class="text-start"><span>Rows: {{ data.length }}</span></div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-success" (click)="openModal()">
+                                    <i class="bi bi-plus fs-3"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <app-datatable [headers]="headers" [data]="data" [actions]="actions"></app-datatable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
