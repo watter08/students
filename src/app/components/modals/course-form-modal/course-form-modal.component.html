@@ -2,11 +2,27 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">My Modal</h5>
+          <h5 class="modal-title">Course Form</h5>
           <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          This is a Bootstrap modal inside a component.
+            <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Course ID</label>
+                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="courseId" />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" formControlName="description" />
+                  <small class="text-danger" *ngIf="courseForm.controls['description'].invalid && courseForm.controls['description'].touched">
+                    <span *ngIf="courseForm.controls['description'].errors?.['minlength']">Description must be at less 6 Characters</span>
+                </small>
+                </div>
+                <div class="text-end">
+                    <button type="button"  class="btn btn-warning me-4" (click)="cleanInputs()">Clear</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+              </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>

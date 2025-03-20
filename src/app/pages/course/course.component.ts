@@ -21,6 +21,7 @@ export class CourseComponent {
 
   headers: string[] = ['ID', 'Description'];
   data: any[] = [];
+  selectedCourse = null;
 
   courseForm = this.fb.nonNullable.group({
     courseId: [''],
@@ -51,4 +52,19 @@ export class CourseComponent {
       });
     }
   }
+
+  handleCourseSave(course: { courseId?: string, description: string }) {
+    if (course.courseId) {
+      this.service.putUpdateCourse(Number(course.courseId), course.description).subscribe((ressponse) => {
+        this.data = ressponse;
+      });
+    } else {
+      this.service.postAddCourse(course.description).subscribe((response) => {
+        if(this.data.length > 0){
+          this.data = response;
+        }
+      });
+    }
+  }
+
 }
