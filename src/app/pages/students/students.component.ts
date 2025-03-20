@@ -68,11 +68,11 @@ export class StudentsComponent {
         this.data = ressponse;
       });
     } else {
-      // this.service.postAddCourse(course.description).subscribe((response) => {
-      //   if(this.data.length > 0){
-      //     this.data = response;
-      //   }
-      // });
+      this.service.postAddStudent(student).subscribe((response) => {
+        if(this.data.length > 0){
+          this.data = response;
+        }
+      });
     }
   }
 

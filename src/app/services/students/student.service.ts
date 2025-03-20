@@ -59,4 +59,13 @@ export class StudentService {
     return of(this.students);
   }
   
+  postAddStudent(student: any): Observable<any[]> {
+    const newData = [...this.students];
+    let newStudent = {...student };
+    newStudent.StudentId = this.students.length ? this.students.length + 1 : 1,
+    newData.push(newStudent);
+    this.students = [...newData];
+    return of(this.students);
+  }
+
 }
