@@ -11,11 +11,19 @@
                     <thead class="table-dark">
                         <tr>
                             <th *ngFor="let header of headers">{{ header }}</th>
+                            <th *ngIf="actions.length">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let row of filteredData()">
                             <td *ngFor="let key of headers">{{ row[key] }}</td>
+                            <td *ngIf="actions.length">
+                                <button *ngFor="let action of actions" 
+                                    class="btn btn-sm btn-light shadow-lg me-1 fs-4"
+                                    (click)="executeAction(action.action, row)">
+                                    <i [class]="action.icon"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

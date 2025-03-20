@@ -36,8 +36,8 @@ export class CourseService {
 
   putUpdateCourse(courseId: number, description: string): Observable<any[]> {
     const newData = this.courses.map((course) => ({
-      ID: courseId === course.ID ? course.ID : courseId,
-      Description: courseId === course.ID ? course.Description : description
+      ID: courseId === course.ID ? courseId : course.ID ,
+      Description: courseId === course.ID ? description : course.Description 
     }));
 
     this.courses = [...newData];

@@ -14,9 +14,10 @@ export class NavbarComponent {
   isAuthenticated = true;
 
   navItems = [
-    { label: 'Students', path: '/students', icon: '🏠' },
-    { label: 'Course', path: '/course', icon: '👥' },
+    { label: 'Students', path: '/students', icon: 'bi bi-people' }, 
+    { label: 'Course', path: '/course', icon: 'bi bi-book' }
   ];
+  
 
   constructor(private router: Router) {}
 

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Component, ElementRef, ViewChild, AfterViewInit, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, Output, EventEmitter, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { Modal } from 'bootstrap';
 
 @Component({
@@ -10,12 +10,12 @@ import { Modal } from 'bootstrap';
   templateUrl: './course-form-modal.component.html',
   styleUrl: './course-form-modal.component.scss'
 })
-export class CourseFormModalComponent implements AfterViewInit {
+export class CourseFormModalComponent implements AfterViewInit, OnChanges  {
   @ViewChild('modalElement') modalRef!: ElementRef;
   private modalInstance!: Modal;
   private fb = inject(FormBuilder);
 
-  @Input() courseData: { courseId?: string, description?: string } | null = null;
+  @Input() courseData: { ID?: string, Description?: string } | null = null;
   @Output() onSubmit = new EventEmitter<{ courseId?: string, description: string }>();
 
   courseForm = this.fb.nonNullable.group({
@@ -27,9 +27,14 @@ export class CourseFormModalComponent implements AfterViewInit {
     this.modalInstance = new Modal(this.modalRef.nativeElement);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['courseData'] && changes['courseData'].currentValue) {
+      this.setFormData()
+    }
+  }
+
   openModal() {
-    this.modalRef.nativeElement.setAttribute('aria-hidden', 'false');
-    this.setFormData();
+    this.modalRef.nativeElement.setAttribute('aria-hidden', 'false');    
     this.modalInstance.show();
   }
 
@@ -41,8 +46,8 @@ export class CourseFormModalComponent implements AfterViewInit {
   setFormData() {
     if (this.courseData) {
       this.courseForm.patchValue({
-        courseId: this.courseData.courseId || '',
-        description: this.courseData.description || ''
+        courseId: this.courseData.ID || '',
+        description: this.courseData.Description || ''
       });
     } else {
       this.cleanInputs();

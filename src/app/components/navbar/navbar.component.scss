@@ -1,6 +1,7 @@
 .navbar {
     background: #333;
     padding: 10px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,10 +11,13 @@
     list-style: none;
     padding: 0;
     display: flex;
+    align-items: center;
   }
   
   .navbar li {
     margin-right: 15px;
+    height: 30px;
+    font-size: 1.1rem;
   }
   
   .navbar a {
@@ -22,10 +26,29 @@
   }
   
   button {
-    background: red;
-    color: white;
+    min-width: 120px;
+    background: #c4c4c4;
+    color: red;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .nav-route{
+    width:  120px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .nav-route.active {
+    background: #fff;
+  }
+  
+  .nav-route.active a{
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
   }
   

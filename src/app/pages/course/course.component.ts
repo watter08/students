@@ -21,7 +21,12 @@ export class CourseComponent {
 
   headers: string[] = ['ID', 'Description'];
   data: any[] = [];
-  selectedCourse = null;
+  selectedCourse: { ID?: string, Description?: string } | null = null;
+
+  actions = [
+    { icon: 'bi bi-pencil-square text-success', action: (row: any) => this.updateRow(row) },
+    { icon: 'bi bi-trash text-danger', action: (row: any) => this.deleteRow(row) }
+  ];
 
   courseForm = this.fb.nonNullable.group({
     courseId: [''],
@@ -65,6 +70,15 @@ export class CourseComponent {
         }
       });
     }
+  }
+
+  updateRow(row: any) {
+    this.selectedCourse = {...row};
+    this.openModal();
+  }
+  
+  deleteRow(usuario: any) {
+    console.log('Eliminando usuario:', usuario);
   }
 
 }

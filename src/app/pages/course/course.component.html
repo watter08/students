@@ -51,10 +51,10 @@
                         <div class="text-start"><span>Rows: {{ data.length }}</span></div>
                         <div class="text-end">
                             <button type="button" class="btn btn-success" (click)="openModal()">
-                                Add
+                                <i class="bi bi-plus fs-3"></i>
                             </button>
                         </div>
-                        <app-datatable [headers]="headers" [data]="data"></app-datatable>
+                        <app-datatable [headers]="headers" [data]="data" [actions]="actions"></app-datatable>
                     </div>
                 </div>
             </div>
