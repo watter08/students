@@ -1,0 +1,10 @@
+<nav *ngIf="isAuthenticated" class="navbar">
+    <ul>
+      <li *ngFor="let item of navItems">
+        <a [routerLink]="item.path">
+          {{ item.icon }} {{ item.label }}
+        </a>
+      </li>
+    </ul>
+    <button (click)="logout()">Cerrar Sesión</button>
+</nav>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-course',
-  imports: [],
+  standalone: true,
+  imports: [NavbarComponent],
   templateUrl: './course.component.html',
   styleUrl: './course.component.scss'
 })

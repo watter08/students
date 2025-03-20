@@ -31,6 +31,7 @@ export class LoginComponent {
       this.authService.getLogIn(Number(studentId), password).subscribe(response => {
         this.message = response ? 'Success' : 'ID or Wrong Password';
         if(response){
+          localStorage.setItem('token', response);
           this.router.navigate(['/students']);
         }        
       });
