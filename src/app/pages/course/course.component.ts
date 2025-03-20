@@ -24,10 +24,18 @@ export class CourseComponent {
     description: ['']
   });
 
+  cleanInputs() {
+    this.courseForm.reset({
+      courseId: '',
+      description: ''
+    });
+    this.data = [];
+  }
+
+
   getCourse() {
     if (this.courseForm.valid) {
       const { courseId, description } = this.courseForm.getRawValue();
-
       this.service.getCourse(Number(courseId), description).subscribe(response => {
        this.data = response;
       });
