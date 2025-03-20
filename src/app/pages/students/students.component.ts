@@ -38,7 +38,6 @@ export class StudentsComponent {
   }
 
   openModal() {
-    console.log('open modal')
     if (this.modalComponent) {
       this.modalComponent.openModal();
     } else {

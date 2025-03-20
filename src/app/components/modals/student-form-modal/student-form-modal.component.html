@@ -1,52 +1,95 @@
 <div #modalElement class="modal fade" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Student Form</h5>
-          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="row" [formGroup]="studentForm" (ngSubmit)="addStudent()">
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Student ID</label>
-              <input type="number" class="form-control" formControlName="StudentId" [disabled]="true" />
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Course ID</label>
-              <input type="number" class="form-control" formControlName="CourseId" />
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" formControlName="Name" />
-              <small class="text-danger" *ngIf="studentForm.controls['Name'].invalid && studentForm.controls['Name'].touched">
-                Name is required and must be at least 3 characters.
-              </small>
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Lastname</label>
-              <input type="text" class="form-control" formControlName="Lastname" />
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Age</label>
-              <input type="number" class="form-control" formControlName="Age" />
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Born Date</label>
-              <input type="date" class="form-control" formControlName="Born" />
-            </div>
-            <div class="col-sm-12 col-md-6 mb-3">
-              <label class="form-label">Address</label>
-              <input type="text" class="form-control" formControlName="Address" />
-            </div>
-            <div class="text-end">
-              <button type="button" class="btn btn-warning me-4" (click)="cleanInputs()">Clear</button>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-        </div>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Student Form</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row" [formGroup]="studentForm" (ngSubmit)="addStudent()">
+          <!-- Student ID -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Student ID</label>
+            <input type="number" class="form-control" formControlName="StudentId" disabled />
+          </div>
+
+          <!-- Course ID -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Course ID</label>
+            <input type="number" class="form-control" formControlName="CourseId" />
+            <small class="text-danger"
+              *ngIf="studentForm.controls['CourseId'].invalid && studentForm.controls['CourseId'].touched">
+              Course ID is required.
+            </small>
+          </div>
+
+          <!-- Name -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="Name" />
+            <small class="text-danger"
+              *ngIf="studentForm.controls['Name'].invalid && (studentForm.controls['Name'].touched || studentForm.controls['Name'].dirty)">
+              <span *ngIf="studentForm.controls['Name'].errors?.['required']">Name is required.</span>
+              <span *ngIf="studentForm.controls['Name'].errors?.['minlength']">Name must be at least 3
+                characters.</span>
+            </small>
+          </div>
+
+          <!-- Lastname -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Lastname</label>
+            <input type="text" class="form-control" formControlName="Lastname" />
+            <small class="text-danger"
+              *ngIf="studentForm.controls['Lastname'].invalid && studentForm.controls['Lastname'].touched">
+              Lastname is required.
+            </small>
+          </div>
+
+          <!-- Age -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" formControlName="Age" />
+
+            <!-- Validaciones -->
+            <small class="text-danger"
+              *ngIf="studentForm.controls['Age'].invalid && studentForm.controls['Age'].touched">
+              <span *ngIf="studentForm.controls['Age'].errors?.['required']">Age is required.</span>
+              <span *ngIf="studentForm.controls['Age'].errors?.['min']">Age must be at least 1.</span>
+              <span *ngIf="studentForm.controls['Age'].errors?.['max']">Age cannot be greater than 120.</span>
+            </small>
+          </div>
+
+          <!-- Born Date -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Born Date</label>
+            <input type="date" class="form-control" formControlName="Born" />
+            <small class="text-danger"
+              *ngIf="studentForm.controls['Born'].invalid && studentForm.controls['Born'].touched">
+              Born date is required.
+            </small>
+          </div>
+
+          <!-- Address -->
+          <div class="col-sm-12 col-md-6 mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" formControlName="Address" />
+            <small class="text-danger"
+              *ngIf="studentForm.controls['Address'].invalid && studentForm.controls['Address'].touched">
+              Address is required.
+            </small>
+          </div>
+
+          <!-- Buttons -->
+          <div class="text-end">
+            <button type="button" class="btn btn-warning me-4" (click)="cleanInputs()">Clear</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
       </div>
     </div>
-  </div>  
+  </div>
+</div>

@@ -23,7 +23,7 @@ export class StudentFormModalComponent implements AfterViewInit, OnChanges {
     CourseId: ['', Validators.required],
     Name: ['', [Validators.required, Validators.minLength(3)]],
     Lastname: ['', Validators.required],
-    Age: [0, [Validators.required, Validators.min(0)]],
+    Age: [0, [Validators.required, Validators.min(1), Validators.max(120)]],
     Born: ['', Validators.required],
     Address: ['', Validators.required]
   });
