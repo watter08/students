@@ -1,0 +1,13 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.max-container{
+    display: flex;
+    max-width: 1600px !important;
+    justify-content: center;
+}
